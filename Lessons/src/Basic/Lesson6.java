@@ -59,13 +59,58 @@ public class Lesson6
 		
 		return answer;
 	}
+	
+	public static int solution2(int[] A) {
+		
+		int[] B = new int[A.length-1];
+		
+		int L = 0;
+		int R = 0;
+		
+		for (int i : A)
+			// 총합 구하기
+			R += i;
+		
+		for (int i = 0; i < B.length; i++)
+		{
+			// 왼쪽 부분 합
+			L += A[i];
+			// 오른쪽 부분 합
+			R -= A[i];
+			
+			B[i] = Math.abs(L-R);
+		}
+		
+		// 최소값
+		Arrays.parallelSort(B);
+		
+		return B[0];
+	}
 }
 
 /**
- * soltuion1 
+ * solution1 
  * Total score, 53% 
  * TimeOut Error 발생
  * 이중 for문 쓸때 Time Out Error 예상은 했는데...
  * 진짜.. Time Out이 나왔네..
  * 이중 for문 사용하지 않는 방안으로 풀이 필요..
+ */
+
+
+/**
+ * solution2
+ * Math.abs()
+ * abs 메서드는 절대값을 반환한다.
+ * 음수를 양수로 변경, 양수는 그대로 표시하여 반환
+ * 단, int 또는 long의 경우 최소 음수인 경우에는 절댓값이 아닌 음수를 그대로 리턴 한다.
+ * ex) 
+ * ------------------------------------------------------
+ * int a = -2147483648;  			// int 최소 음수
+ * long b = -9223372036854775808;	// long 최소 음수
+ * System.out.println(Math.abs(a));
+ * System.out.println(Math.abs(b));
+ * -2147483648 
+ * -9223372036854775808
+ * ------------------------------------------------------
  */
