@@ -15,6 +15,7 @@
 package Basic;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Lesson7
 {
@@ -43,6 +44,27 @@ public class Lesson7
             	if ( !Arrays.stream(B).anyMatch(j -> j == 0 ) ) return i;
             }
         }
+		
+		return -1;
+	}
+	
+	public static int solution2(int X, int[] A) {
+		
+		// 배열에 해당 수가 존재하는지 확인
+		if ( !Arrays.stream(A).anyMatch(i -> i == X) ) 
+			return -1;
+				
+		HashSet<Integer> hash = new HashSet<Integer>();
+		
+		for (int i = 0; i < A.length; i++)
+		{
+			if ( A[i] <= X ) {
+				hash.add(A[i]);
+				
+				if ( hash.size() == X ) 
+					return i;
+			}
+		}
 		
 		return -1;
 	}
